@@ -11,15 +11,16 @@ using Microsoft.Xna.Framework.Input;
 
 class Camera : GameObject
 {
-    public Vector2 CameraPosition = new Vector2(0,0);
+    public Vector2 CameraPosition;
     public Camera()
     {
-
+        id = "camera";
     }
     public override void Update(GameTime gameTime)
     {
+        Point Screen = new Point(GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
         Player player = GameWorld.Find("player") as Player;
-        CameraPosition = player.Position + new Vector2(GameEnvironment.windowSize.X/2, GameEnvironment.windowSize.Y/2);
+        CameraPosition = player.Position - new Vector2(Screen.X/2, Screen.Y/2);
     }
 }
 

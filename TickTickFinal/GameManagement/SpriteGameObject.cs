@@ -27,11 +27,14 @@ public class SpriteGameObject : GameObject
         {
             return;
         }
-        Camera camera = new Camera();
-        if (layer == 100)
-            sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+        Camera camera = GameWorld.Find("camera") as Camera;
+        if(camera != null)
+        {
+                sprite.Draw(spriteBatch, this.GlobalPosition - camera.CameraPosition, origin);
+        }
         else
-        sprite.Draw(spriteBatch, this.GlobalPosition - camera.CameraPosition, origin);
+            sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+
     }
 
     public SpriteSheet Sprite
