@@ -1,0 +1,4 @@
+ROCKET:
+-added Die method to rocket, making them killable and making the player jump when hitting one.
+-improved CheckPlayerCollision to check if player is on top of the rocket, which kills the rocket.
+-added boolean isAlive to all spritegameobjects so they can die.

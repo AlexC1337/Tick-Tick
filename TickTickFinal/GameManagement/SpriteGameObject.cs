@@ -6,6 +6,7 @@ public class SpriteGameObject : GameObject
     protected SpriteSheet sprite;
     protected Vector2 origin;
     public bool PerPixelCollisionDetection = true;
+    public bool isAlive = true;
 
     public SpriteGameObject(string assetName, int layer = 0, string id = "", int sheetIndex = 0)
         : base(layer, id)
@@ -22,14 +23,15 @@ public class SpriteGameObject : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        if (!visible || sprite == null)
+        if (!visible || sprite == null || !isAlive)
         {
             return;
         }
+        Camera camera = new Camera();
         if (layer == 100)
             sprite.Draw(spriteBatch, this.GlobalPosition, origin);
         else
-        sprite.Draw(spriteBatch, this.GlobalPosition - Camera.CameraPosition, origin);
+        sprite.Draw(spriteBatch, this.GlobalPosition - camera.CameraPosition, origin);
     }
 
     public SpriteSheet Sprite

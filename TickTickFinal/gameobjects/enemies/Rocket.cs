@@ -20,6 +20,7 @@ class Rocket : AnimatedGameObject
         position = startPosition;
         velocity = Vector2.Zero;
         spawnTime = GameEnvironment.Random.NextDouble() * 5;
+        isAlive = true;
     }
 
     public override void Update(GameTime gameTime)
@@ -48,9 +49,21 @@ class Rocket : AnimatedGameObject
     public void CheckPlayerCollision()
     {
         Player player = GameWorld.Find("player") as Player;
-        if (CollidesWith(player) && visible)
+        if (CollidesWith(player) && visible && isAlive)
         {
-            player.Die(false);
+            if (player.GlobalPosition.Y + player.Height < GlobalPosition.Y + Height / 2 && player.Velocity.Y > 0)
+            {
+                Die();
+                player.Jump();
+            }
+            else
+            {
+                player.Die(false);
+            }
         }
+    }
+    public void Die()
+    {
+        isAlive = false;
     }
 }

@@ -7,7 +7,6 @@ partial class Player : AnimatedGameObject
     protected Vector2 startPosition;
     protected bool isOnTheGround;
     protected float previousYPosition;
-    protected bool isAlive;
     protected bool exploded;
     protected bool finished;
     protected bool walkingOnIce, walkingOnHot;
@@ -70,6 +69,11 @@ partial class Player : AnimatedGameObject
         {
             Jump();
         }
+        if (inputHelper.KeyPressed(Keys.LeftControl) || inputHelper.KeyPressed(Keys.RightControl))
+        {
+            Shoot();
+        }
+
     }
 
     public override void Update(GameTime gameTime)
@@ -115,6 +119,11 @@ partial class Player : AnimatedGameObject
         }
 
         DoPhysics();
+    }
+
+    public void Shoot()
+    {
+        Bomb bomb = new Bomb(Mirror, Position);
     }
 
     public void Explode()
