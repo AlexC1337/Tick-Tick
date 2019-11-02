@@ -6,7 +6,6 @@ public class SpriteGameObject : GameObject
     protected SpriteSheet sprite;
     protected Vector2 origin;
     public bool PerPixelCollisionDetection = true;
-    public bool isAlive = true;
 
     public SpriteGameObject(string assetName, int layer = 0, string id = "", int sheetIndex = 0)
         : base(layer, id)
@@ -96,7 +95,11 @@ public class SpriteGameObject : GameObject
 
     public bool CollidesWith(SpriteGameObject obj)
     {
-        if (!visible || !obj.visible || !BoundingBox.Intersects(obj.BoundingBox))
+        if(obj == null)
+        {
+            return false;
+        }
+        if (!visible || !obj.visible || !BoundingBox.Intersects(obj.BoundingBox) || !isAlive)
         {
             return false;
         }
@@ -120,6 +123,10 @@ public class SpriteGameObject : GameObject
             }
         }
         return false;
+    }
+    public void Die()
+    {
+        isAlive = false;
     }
 }
 

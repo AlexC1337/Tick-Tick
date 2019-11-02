@@ -10,6 +10,7 @@ partial class Player : AnimatedGameObject
     protected bool exploded;
     protected bool finished;
     protected bool walkingOnIce, walkingOnHot;
+    public static bool IsShooting = false;
 
     public Player(Vector2 start) : base(2, "player")
     {
@@ -30,6 +31,7 @@ partial class Player : AnimatedGameObject
         velocity = Vector2.Zero;
         isOnTheGround = true;
         isAlive = true;
+        IsShooting = false;
         exploded = false;
         finished = false;
         walkingOnIce = false;
@@ -123,8 +125,12 @@ partial class Player : AnimatedGameObject
 
     public void Shoot()
     {
-        Bomb bomb = new Bomb(Mirror, Position);
-  //      GameObjectList.Add(bomb);
+        if (!IsShooting)
+        {
+            Bomb bomb = new Bomb(Mirror, position);
+            GameWorld.Add(bomb);
+            IsShooting = true;
+        }
     }
 
     public void Explode()

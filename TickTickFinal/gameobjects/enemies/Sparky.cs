@@ -58,6 +58,21 @@ class Sparky : AnimatedGameObject
         }
 
         CheckPlayerCollision();
+        CheckBombCollision();
+    }
+
+    public void CheckBombCollision()
+    {
+        Bomb bomb = GameWorld.Find("bomb") as Bomb;
+        if (CollidesWith(bomb))
+        {
+            Die();
+        }
+    }
+
+    protected void Die()
+    {
+        isAlive = false;
     }
 
     public void CheckPlayerCollision()

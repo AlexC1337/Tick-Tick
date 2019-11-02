@@ -1,14 +1,14 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 class Bomb : AnimatedGameObject
 {
-    Vector2 startPosition;
-    public Bomb(bool checkMirror, Vector2 startPosition)
+    public Bomb(bool checkMirror, Vector2 startPosition) : base(0,"bomb")
     {
-        LoadAnimation("Sprites/Rocket/spr_rocket@3", "default", true, 0.2f);
+        LoadAnimation("Sprites/Bomb/spr_bomb@3", "default", true, 0.2f);
         PlayAnimation("default");
-        this.startPosition = startPosition;
+        this.Position = startPosition;
         if (checkMirror) Mirror = checkMirror;
     }
 
@@ -21,5 +21,24 @@ class Bomb : AnimatedGameObject
         {
             velocity.X *= -1;
         }
+        //CheckEnemyCollision();
+        Rectangle screenBox = new Rectangle(0, 0, GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
+        if (!screenBox.Intersects(this.BoundingBox))
+        {
+            GameWorld.Remove(this);
+            Player.IsShooting = false;
+        }
     }
+
+    //public void CheckEnemyCollision()
+    //{
+    //    GameObjectList enemies = GameWorld.Find("enemies") as GameObjectList;
+    //    foreach(SpriteGameObject enemy in enemies)
+    //    {
+    //        if (CollidesWith(enemy) && visible && isAlive)
+    //        {
+    //            enemy.isAlive = false;
+    //        }
+    //    }
+    //}
 }

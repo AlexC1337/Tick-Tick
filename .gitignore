@@ -58,5 +58,4 @@ v16/
 obj/x86
 *.mgcontent
 *.mgcontent
-/TetrisTemplate/TetrisTemplate_TemporaryKey.pfx
-/TetrisTemplate/TetrisTemplate.csproj.user
+

@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\TickTickFinal",
-    "\\TickTickFinal\\GameManagement"
+    "\\TickTickFinal\\GameManagement",
+    "\\TickTickFinal\\gameobjects",
+    "\\TickTickFinal\\level"
   ],
-  "SelectedNode": "\\TickTickFinal\\GameManagement",
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }

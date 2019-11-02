@@ -7,14 +7,21 @@ CAMERA:
 -changed draw method in SpriteGameObject.cs to accommodate.
 -changed layers to make more sense for parallax scrolling
 -added parallax scrolling
+-made all HUD items layer 100, because they dont need to move
+-made the mountains get a random layer so they will move indepentently of each other with parallax
 -added boundaries that work no matter the size of the level
--moved timer to levelloading because it is no longer a constant and made it readable from the level stream
+-made sure things still worked fullscreen
+LEVEL:
 -made a tryparse function to find out if there is a timer
 -added timerlineoffset so that the line with the timer only gets read if it exists
 -made timer parse from seconds instead of minutes, because it makes more sense.
--made all HUD items layer 100, because they dont need to move
--made the mountains get a random layer so they will move indepentently of each other with parallax
+-moved timer to levelloading because it is no longer a constant and made it readable from the level stream
+-made custom levels that are extra large;
+
 SHOOTING:
 -added shoot() method
--added bullet game object
+-added bomb game object
 -added shoot keybind (ctrl)
+-if bomb collides with an enemy, they will die
+-if bomb gets outside of the screen, it gets removed from the game object list
+-if a level resets, the dead enemies will reset as well
