@@ -123,9 +123,7 @@ partial class Player : AnimatedGameObject
 
     public void Shoot()
     {
-        GameObjectList projectiles = new GameObjectList();
         Bomb bomb = new Bomb(Mirror, Position);
-        projectiles.Add(bomb);      
     }
 
     public void Explode()
