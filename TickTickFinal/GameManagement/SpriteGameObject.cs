@@ -28,7 +28,7 @@ public class SpriteGameObject : GameObject
             return;
         }
         Camera camera = GameWorld.Find("camera") as Camera;
-        if(camera != null)
+        if(camera != null && layer != 100 && layer != 0)
         {
                 sprite.Draw(spriteBatch, this.GlobalPosition - camera.CameraPosition, origin);
         }
