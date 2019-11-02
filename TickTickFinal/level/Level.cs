@@ -9,36 +9,29 @@ partial class Level : GameObjectList
     {
         // load the backgrounds
         GameObjectList backgrounds = new GameObjectList(0, "backgrounds");
-        SpriteGameObject backgroundSky = new SpriteGameObject("Backgrounds/spr_sky");
+        SpriteGameObject backgroundSky = new SpriteGameObject("Backgrounds/spr_sky", 1);
         backgroundSky.Position = new Vector2(0, GameEnvironment.Screen.Y - backgroundSky.Height);
         backgrounds.Add(backgroundSky);
 
         // add a few random mountains
         for (int i = 0; i < 5; i++)
         {
-            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), 1);
+            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), (GameEnvironment.Random.Next(3,5)));
             mountain.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - mountain.Width / 2, 
                 GameEnvironment.Screen.Y - mountain.Height);
-            backgrounds.Add(mountain);
+           backgrounds.Add(mountain);
         }
 
-        Clouds clouds = new Clouds(2);
+        Clouds clouds = new Clouds(4);
         backgrounds.Add(clouds);
         Add(backgrounds);
-
-        SpriteGameObject timerBackground = new SpriteGameObject("Sprites/spr_timer", 100);
-        timerBackground.Position = new Vector2(10, 10);
-        Add(timerBackground);
-        TimerGameObject timer = new TimerGameObject(101, "timer");
-        timer.Position = new Vector2(25, 30);
-        Add(timer);
 
         quitButton = new Button("Sprites/spr_button_quit", 100);
         quitButton.Position = new Vector2(GameEnvironment.Screen.X - quitButton.Width - 10, 10);
         Add(quitButton);
 
-        Add(new GameObjectList(1, "waterdrops"));
-        Add(new GameObjectList(2, "enemies"));
+        Add(new GameObjectList(6, "waterdrops"));
+        Add(new GameObjectList(7, "enemies"));
 
         LoadTiles("Content/Levels/" + levelIndex + ".txt");
     }

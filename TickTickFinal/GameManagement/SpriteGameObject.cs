@@ -28,9 +28,18 @@ public class SpriteGameObject : GameObject
             return;
         }
         Camera camera = GameWorld.Find("camera") as Camera;
-        if(camera != null)
+        if(camera != null && layer != 100 && layer != 1)
         {
-                sprite.Draw(spriteBatch, this.GlobalPosition - camera.CameraPosition, origin);
+            if (layer >= 3 && layer <= 5)
+            {
+                sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position / layer, origin); //parallax layers, 3 layers that move slower if they are further away.
+
+            }
+            else
+            {
+                sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position, origin);
+            }
+
         }
         else
             sprite.Draw(spriteBatch, this.GlobalPosition, origin);
