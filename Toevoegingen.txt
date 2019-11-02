@@ -2,3 +2,19 @@ ROCKET:
 -added Die method to rocket, making them killable and making the player jump when hitting one.
 -improved CheckPlayerCollision to check if player is on top of the rocket, which kills the rocket.
 -added boolean isAlive to all spritegameobjects so they can die.
+CAMERA:
+-added camera object that moves with the player
+-changed draw method in SpriteGameObject.cs to accommodate.
+-changed layers to make more sense for parallax scrolling
+-added parallax scrolling
+-added boundaries that work no matter the size of the level
+-moved timer to levelloading because it is no longer a constant and made it readable from the level stream
+-made a tryparse function to find out if there is a timer
+-added timerlineoffset so that the line with the timer only gets read if it exists
+-made timer parse from seconds instead of minutes, because it makes more sense.
+-made all HUD items layer 100, because they dont need to move
+-made the mountains get a random layer so they will move indepentently of each other with parallax
+SHOOTING:
+-added shoot() method
+-added bullet game object
+-added shoot keybind (ctrl)

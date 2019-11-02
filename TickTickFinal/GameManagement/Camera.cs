@@ -15,12 +15,26 @@ class Camera : GameObject
     public Camera()
     {
         id = "camera";
-        //TileField tiles = GameWorld.Find("tiles") as TileField;
         Screen = new Point(GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
     }
     public override void Update(GameTime gameTime)
     {
+        TileField tiles = GameWorld.Find("tiles") as TileField;
+        int width = tiles.Columns * tiles.CellWidth;
+        int height = tiles.Rows * tiles.CellHeight;
         Player player = GameWorld.Find("player") as Player;
-        Position = player.Position - new Vector2(Screen.X/2, Screen.Y/2);
+        position = player.Position - new Vector2(Screen.X / 2, Screen.Y / 2);
+        if (Position.X < 0)
+        {
+            position.X = 0;
+        }
+        if (Position.X > width - Screen.X)
+        {
+            position.X = width - Screen.X;
+        }
+        if (Position.Y > height - Screen.Y)
+        {
+            position.Y = height - Screen.Y;
+        }
     }
 }
